@@ -13,9 +13,9 @@ class User < ApplicationRecord
   end
 
   def uniq_account
-    account = rand.to_s[2..17]
+    account = rand.to_s[2..17].scan(/.{4}/).join('-')
     while BankAccount.exists?(account: account) do
-      account = rand.to_s[2..17]
+      account = rand.to_s[2..17].scan(/.{4}/).join('-')
     end
     account
   end
