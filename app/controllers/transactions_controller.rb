@@ -41,7 +41,8 @@ class TransactionsController < ApplicationController
   end
 
   def validate_from_account
-    unless transaction_params[:from_bank_account_id].present? ||
+    unless transaction_params.present? ||
+           transaction_params[:from_bank_account_id].present? ||
            current_user.bank_accounts.pluck(:id).include?(transaction_params[:from_bank_account_id].to_i)
       flash[:alert] = "Please select your bank account!"
       return redirect_to new_transaction_path

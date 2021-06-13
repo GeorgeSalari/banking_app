@@ -53,6 +53,7 @@ group :test do
   gem 'rspec-rails', '~> 5.0.0'
   # Use database cleaner to ensure the db is clear between and after tests
   gem 'database_cleaner', '~> 1.8'
+  gem 'rails-controller-testing', '~> 0.0.3'
   # Makes matchers available for easy test writing
   gem 'shoulda-matchers', '~> 3.1'
   # Adds support for Capybara system testing and selenium driver

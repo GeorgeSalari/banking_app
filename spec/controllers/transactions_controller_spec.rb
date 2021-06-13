@@ -65,7 +65,7 @@ RSpec.describe TransactionsController, type: :controller do
           to_bank_account: to_bank_account.account,
         }
       }
-      expect(response).to redirect_to('/transactions/new')
+      expect(response).to render_template('new')
     end
 
     it 'redirects to new action if from user have less balance then transfer amount' do
@@ -82,7 +82,7 @@ RSpec.describe TransactionsController, type: :controller do
           to_bank_account: to_bank_account.account,
         }
       }
-      expect(response).to redirect_to('/transactions/new')
+      expect(response).to render_template('new')
     end
 
     it 'create transaction with valid data and change users balance' do
