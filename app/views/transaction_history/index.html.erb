@@ -1,0 +1,45 @@
+<div class="container history-container mt-5">
+  <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+    <li class="nav-item">
+      <%= link_to "Deposits", '#', class: "nav-link active", id: 'deposits-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Withdrawals", '#', class: "nav-link", id: 'withdrawals-link' %>
+    </li>
+  </ul>
+
+  <div id="deposits" class="show-container">
+    <% if @deposits.present? %>
+      <h2>Deposits to your bank accounts</h2>
+      <% @deposits.each do |deposit| %>
+        <div class="border-bottom border-dark py-2 mb-3">
+          <p>Deposit from: <%= find_user_email(deposit.from_bank_account_id) %> </p>
+          <p>Amount: <%= deposit.amount %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div id="withdrawals" class="d-none show-container">
+    <% if @witdrawals.present? %>
+      <h2>Witdrawals from your bank accounts</h2>
+      <% @witdrawals.each do |withdraw| %>
+        <div class="border-bottom border-dark py-2 mb-3">
+          <p>Sent to: <%= find_user_email(withdraw.to_bank_account_id) %> </p>
+          <p>Amount: <%= withdraw.amount %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  $('.nav-link').on('click', function(e) {
+    e.preventDefault()
+    $('.nav-link').removeClass('active')
+    $(e.target).addClass('active')
+    $('.show-container').addClass('d-none')
+    let clicked = $(e.target).attr('id')
+    $('#'+clicked.split('-')[0]).removeClass('d-none')
+  })
+</script>
