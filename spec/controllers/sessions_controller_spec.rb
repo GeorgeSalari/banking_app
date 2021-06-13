@@ -8,7 +8,7 @@ RSpec.describe SessionsController, type: :controller do
     it 'redirects to new action when data not valid' do
       post :create, params: { user: { email: '', password: '' } }
       expect(session[:user_id]).to be(nil)
-      expect(response).to redirect_to(action: :new)
+      expect(response).to redirect_to('/login')
     end
 
     it 'sign in an account with valid data' do
@@ -34,7 +34,7 @@ RSpec.describe SessionsController, type: :controller do
 
       delete :destroy
       expect(session[:user_id]).to be(nil)
-      expect(response).to redirect_to(action: :new)
+      expect(response).to redirect_to('/login')
     end
   end
 end
