@@ -1,21 +1,23 @@
-<div class="container mt-5">
-  <div class="row">
-    <h2>Login to Bank Account</h2>
-    <div class="col-md-6">
-      <%= form_for :user, url: login_path, method: :post do |f| %>
-        <div class="form-group mb-3">
-          <%= f.email_field :email, autofocus: true, autocomplete: 'email',
-                            class: 'form-control',
-                            placeholder: 'Email', required: true %>
-        </div>
-        <div class="form-group mb-3">
-          <%= f.password_field :password, autofocus: true, autocomplete: 'off',
-                                class: 'form-control',
-                                placeholder: 'password', required: true %>
-        </div>
+<% unless logged_in? %>
+  <div class="container mt-5">
+    <div class="row">
+      <h2>Login to Bank Account</h2>
+      <div class="col-md-6">
+        <%= form_for :user, url: login_path, method: :post do |f| %>
+          <div class="form-group mb-3">
+            <%= f.email_field :email, autofocus: true, autocomplete: 'email',
+                              class: 'form-control',
+                              placeholder: 'Email', required: true %>
+          </div>
+          <div class="form-group mb-3">
+            <%= f.password_field :password, autofocus: true, autocomplete: 'off',
+                                  class: 'form-control',
+                                  placeholder: 'password', required: true %>
+          </div>
 
-        <%= f.submit 'Login', class: 'btn btn-primary' %>
-      <% end %>
+          <%= f.submit 'Login', class: 'btn btn-primary' %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
