@@ -13,10 +13,18 @@ RSpec.describe BankAccount, type: :model do
   ## Test of associations
   it { should belong_to(:user) }
 
+  it 'validate uniqueness of account' do
+    user = User.create(email: 'test@gmail.com', password: 'test', password_confirmation: 'test')
+    bank_account = BankAccount.create(user_id: user.id, account: '1234-1234-1234-1234')
+    user_1 = User.create(email: 'test1@gmail.com', password: 'test', password_confirmation: 'test')
+    bank_account_1 = BankAccount.create(user_id: user_1.id, account: '1234-1234-1234-1234')
+    expect(bank_account.errors.messages).to include('Bank account already exist')
+  end
+
   it 'validate not have a negative balance' do
     user = User.create(email: 'test@gmail.com', password: 'test', password_confirmation: 'test')
     bank_account = BankAccount.create(user_id: user.id, account: '1234-1234-1234-1234')
     bank_account.update(balance: -5)
-    expect(bank_account.errors.messages).to inlude("Balance can't be less then 0")
+    expect(bank_account.errors.messages).to include("Balance can't be less then 0")
   end
 end
