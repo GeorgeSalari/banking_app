@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2021_06_13_200054) do
   create_table "transactions", force: :cascade do |t|
     t.bigint "from_bank_account_id"
     t.bigint "to_bank_account_id"
-    t.string "amount"
+    t.float "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["from_bank_account_id"], name: "index_transactions_on_from_bank_account_id"
