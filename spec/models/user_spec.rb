@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
   it { should validate_presence_of :password_confirmation }
 
   ## Test of associations
-  it { should have_many(:bank_account) }
+  it { should have_many(:bank_accounts).dependent(:destroy) }
 
   it 'should give error if password_confirmation not match' do
     user = User.create(email: 'test#gmail.com', password: 'test', password_confirmation: 'not_match')
