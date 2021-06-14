@@ -1,1 +1,21 @@
 @import "bootstrap";
+
+.history-container {
+  ul, li {
+    display: inline-block;
+
+    a {
+      color: rgba(0, 0, 0, 0.55);
+
+      &.active {
+        color: rgba(0, 0, 0, 0.9);
+        font-weight: bolder;
+      }
+    }
+  }
+
+  li:first-child {
+    margin-right: 20px;
+  }
+}
+

@@ -7,7 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Funds</a>
+          <%= link_to "Funds", funds_path, class: "nav-link #{controller_name == 'funds' ? 'active' : ''}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "New Transfer", new_transaction_path, class: "nav-link #{controller_name == 'transactions' ? 'active' : ''}" %>
         </li>
       </ul>
       <ul class="navbar-nav my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">

@@ -11,6 +11,8 @@ RSpec.describe BankAccount, type: :model do
 
   ## Test of associations
   it { should belong_to(:user) }
+  it { should have_many(:from_bank_account) }
+  it { should have_many(:to_bank_account) }
 
   it 'validate uniqueness of account' do
     user = User.create(email: 'test@gmail.com', password: 'test', password_confirmation: 'test')
