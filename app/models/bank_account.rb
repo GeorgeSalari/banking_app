@@ -6,4 +6,22 @@ class BankAccount < ApplicationRecord
   belongs_to :user
   has_many :from_bank_account, foreign_key: :from_bank_account_id, class_name: "Transaction"
   has_many :to_bank_account, foreign_key: :to_bank_account_id, class_name: "Transaction"
+
+  before_update :check_from_account, if: proc{|acc| acc.user.email != 'admin@bank.accounts'}
+
+  def check_from_account
+    admin_account = User.find_by(email: 'admin@bank.accounts').bank_accounts.first
+    if !from_bank_account.present? && !to_bank_account.present?
+      Transaction.create(amount: balance, from_bank_account_id: admin_account.id, to_bank_account_id: id)
+      return true
+    end
+
+    if balance > balance_was
+      Transaction.create(amount: balance - balance_was, from_bank_account_id: admin_account.id, to_bank_account_id: id)
+      return true
+    else
+      Transaction.create(amount: balance_was - balance, from_bank_account_id: id, to_bank_account_id: admin_account.id)
+      return true
+    end
+  end
 end
