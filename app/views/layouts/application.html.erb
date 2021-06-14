@@ -11,6 +11,8 @@
   </head>
 
   <body>
+    <%= render 'shared/navbar' if logged_in? %>
+    <%= flash_messages %>
     <%= yield %>
   </body>
 </html>

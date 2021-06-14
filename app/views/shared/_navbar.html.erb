@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">BankAccountLogo</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+          <%= link_to "Funds", funds_path, class: "nav-link #{controller_name == 'funds' ? 'active' : ''}" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "New Transfer", new_transaction_path, class: "nav-link #{controller_name == 'transactions' ? 'active' : ''}" %>
+        </li>
+      </ul>
+      <ul class="navbar-nav my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+          <%= link_to "Logout", logout_path, :method => :delete %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

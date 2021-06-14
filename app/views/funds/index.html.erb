@@ -1,0 +1,10 @@
+<div class="container mt-5">
+  <% if @bank_accounts.present? %>
+    <% @bank_accounts.each do |bank_account| %>
+      <p class="mb-3">Account number: <span><%= bank_account.account %></span></p>
+      <p>Account balance: <span class="bold"><%= bank_account.balance %></span></p>
+
+      <%= link_to "View bank account history", bank_account_transaction_history_index_path(bank_account) %>
+    <% end %>
+  <% end %>
+</div>
