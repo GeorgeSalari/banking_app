@@ -16,10 +16,12 @@ class BankAccount < ApplicationRecord
       return true
     end
 
-    if balance > balance_was
+    last_transaction = Transaction.where('from_bank_account_id = ? OR to_bank_account_id = ?', 5, 5).order(:created_at).last
+
+    if balance > balance_was && (balance - balance_was) != last_transaction.amount
       Transaction.create(amount: balance - balance_was, from_bank_account_id: admin_account.id, to_bank_account_id: id)
       return true
-    else
+    elsif balance < balance_was && (balance_was - balance) != last_transaction.amount
       Transaction.create(amount: balance_was - balance, from_bank_account_id: id, to_bank_account_id: admin_account.id)
       return true
     end
